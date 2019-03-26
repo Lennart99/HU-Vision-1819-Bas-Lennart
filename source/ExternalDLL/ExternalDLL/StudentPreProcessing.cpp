@@ -1,9 +1,7 @@
 #include "StudentPreProcessing.h"
-#include "IntensityImageStudent.h"
 #include "ImageFactory.h"
 
 IntensityImage * StudentPreProcessing::stepToIntensityImage(const RGBImage &image) const {
-	// TODO replace with ImageFactory::newIn...
 	auto ptr = ImageFactory::newIntensityImage(image.getWidth(), image.getHeight());
 
 	for (int w = 0; w < image.getWidth(); w++) {

@@ -15,8 +15,8 @@ bool executeSteps(DLLExecution * executor);
 
 int main(int argc, char * argv[]) {
 
-	ImageFactory::setImplementation(ImageFactory::DEFAULT);
-	//ImageFactory::setImplementation(ImageFactory::STUDENT);
+	//ImageFactory::setImplementation(ImageFactory::DEFAULT);
+	ImageFactory::setImplementation(ImageFactory::STUDENT);
 
 
 	ImageIO::debugFolder = "C:\\ti-software\\HU-Vision-1819-Bas-Lennart\\debug";
@@ -50,15 +50,6 @@ int main(int argc, char * argv[]) {
 	system("pause");
 	return 1;
 }
-
-
-
-
-
-
-
-
-
 
 bool executeSteps(DLLExecution * executor) {
 
