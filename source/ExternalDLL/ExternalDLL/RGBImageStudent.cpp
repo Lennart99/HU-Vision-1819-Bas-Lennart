@@ -1,15 +1,13 @@
 #include "RGBImageStudent.h"
 
 RGBImageStudent::RGBImageStudent() : RGBImage() {
-	
+	pixels = new RGB();
 }
 
-RGBImageStudent::RGBImageStudent(const RGBImageStudent &other) : RGBImage(other.getWidth(), other.getHeight()) {
-	pixels.resize(other.getWidth(), other.getHeight());
-
-	for(unsigned int x = 0; x<getWidth(); x++) {
-		for(unsigned int y = 0; y<getWidth(); y++) {
-			setPixel(x, y, getPixel(x,y) );
+RGBImageStudent::RGBImageStudent(const RGBImageStudent &other) :RGBImageStudent(other.getWidth(), other.getHeight()) {
+	for(int x = 0; x<getWidth(); x++) {
+		for(int y = 0; y<getWidth(); y++) {
+			setPixel(x, y, other.getPixel(x,y) );
 		}
 	}
 	//TODO: Create a copy from the other object
@@ -17,25 +15,27 @@ RGBImageStudent::RGBImageStudent(const RGBImageStudent &other) : RGBImage(other.
 
 
 RGBImageStudent::RGBImageStudent(const int width, const int height) : RGBImage(width, height) {
-	pixels.resize(width*height);
+	pixels = new RGB[width*height];
 	//TODO: Initialize pixel storage
 }
 
 RGBImageStudent::~RGBImageStudent() {
 	//TODO: delete allocated objects
+	delete[] pixels;
 }
 
 void RGBImageStudent::set(const int width, const int height) {
 	RGBImage::set(width, height);
-	pixels.resize(width*height);
+	delete[] pixels;
+	pixels = new RGB[width*height];
 }
 
 void RGBImageStudent::set(const RGBImageStudent &other) {
 	set(other.getWidth(), other.getHeight());
 	
-	for(unsigned int x = 0; x<getWidth(); x++) {
-		for(unsigned int y = 0; y<getWidth(); y++) {
-			setPixel(x, y, {0,0,0});
+	for(int x = 0; x<getWidth(); x++) {
+		for(int y = 0; y<getWidth(); y++) {
+			setPixel(x, y, other.getPixel(x, y));
 		}
 	}
 }

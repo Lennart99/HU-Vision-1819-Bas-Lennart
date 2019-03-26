@@ -2,14 +2,13 @@
 
 IntensityImageStudent::IntensityImageStudent() : IntensityImage() {
 	//TODO: Nothing
+	pixels = new Intensity();
 }
 
-IntensityImageStudent::IntensityImageStudent(const IntensityImageStudent &other):IntensityImage(other.getWidth(), other.getHeight()) {
-	pixels.resize(other.getWidth(), other.getHeight());
-
-	for(unsigned int x = 0; x<getWidth(); x++) {
-		for(unsigned int y = 0; y<getWidth(); y++) {
-			setPixel(x, y, getPixel(x, y));
+IntensityImageStudent::IntensityImageStudent(const IntensityImageStudent &other):IntensityImageStudent(other.getWidth(), other.getHeight()) {
+	for(int x = 0; x<getWidth(); x++) {
+		for(int y = 0; y<getWidth(); y++) {
+			setPixel(x, y, other.getPixel(x, y));
 		}
 	}
 	//TODO: Create a copy from the other object
@@ -17,25 +16,27 @@ IntensityImageStudent::IntensityImageStudent(const IntensityImageStudent &other)
 
 
 IntensityImageStudent::IntensityImageStudent(const int width, const int height): IntensityImage(width, height) {
-	pixels.resize(width*height);
+	pixels = new Intensity[width*height];
 	//TODO: Initialize pixel storage
 }
 
 IntensityImageStudent::~IntensityImageStudent() {
 	//TODO: delete allocated objects
+	delete[] pixels;
 }
 
 void IntensityImageStudent::set(const int width, const int height) {
 	IntensityImage::set(width, height);
-	pixels.resize(width*height);
+	delete[] pixels;
+	pixels = new Intensity[width*height];
 }
 
 void IntensityImageStudent::set(const IntensityImageStudent &other) {
 	set(other.getWidth(), other.getHeight());
 
-	for(unsigned int x = 0; x<getWidth(); x++) {
-		for(unsigned int y = 0; y<getWidth(); y++) {
-			setPixel(x, y, 0);
+	for(int x = 0; x<getWidth(); x++) {
+		for(int y = 0; y<getWidth(); y++) {
+			setPixel(x, y, other.getPixel(x, y));
 		}
 	}
 }

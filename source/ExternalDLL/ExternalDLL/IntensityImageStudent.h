@@ -9,7 +9,7 @@
 #include <vector>
 class IntensityImageStudent : public IntensityImage {
 private:
-	std::vector<Intensity> pixels;
+	Intensity* pixels;
 public:
 	IntensityImageStudent();
 	IntensityImageStudent(const IntensityImageStudent &other);

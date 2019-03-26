@@ -5,6 +5,7 @@
 */
 
 #include <iostream> //std::cout
+#include <chrono>
 #include "ImageIO.h" //Image load and save functionality
 #include "HereBeDragons.h"
 #include "ImageFactory.h"
@@ -17,7 +18,6 @@ int main(int argc, char * argv[]) {
 
 	//ImageFactory::setImplementation(ImageFactory::DEFAULT);
 	ImageFactory::setImplementation(ImageFactory::STUDENT);
-
 
 	ImageIO::debugFolder = "C:\\ti-software\\HU-Vision-1819-Bas-Lennart\\debug";
 	ImageIO::isInDebugMode = true; //If set to false the ImageIO class will skip any image save function calls
@@ -37,13 +37,18 @@ int main(int argc, char * argv[]) {
 
 	DLLExecution * executor = new DLLExecution(input);
 
-
+	auto start = std::chrono::high_resolution_clock::now();
+	
 	if (executeSteps(executor)) {
+		auto finish = std::chrono::high_resolution_clock::now();
+
 		std::cout << "Face recognition successful!" << std::endl;
 		std::cout << "Facial parameters: " << std::endl;
 		for (int i = 0; i < 16; i++) {
 			std::cout << (i+1) << ": " << executor->facialParameters[i] << std::endl;
 		}
+		
+		std::cout<<"took "<<std::chrono::duration_cast<std::chrono::milliseconds>(finish-start).count()<<" ms\n";
 	}
 
 	delete executor;
