@@ -1,7 +1,7 @@
 #include "RGBImageStudent.h"
 
 RGBImageStudent::RGBImageStudent() : RGBImage() {
-	pixels = new RGB();
+	pixels = new RGB[1];
 }
 
 RGBImageStudent::RGBImageStudent(const RGBImageStudent &other) :RGBImageStudent(other.getWidth(), other.getHeight()) {

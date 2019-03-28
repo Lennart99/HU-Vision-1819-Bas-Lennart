@@ -2,7 +2,7 @@
 
 IntensityImageStudent::IntensityImageStudent() : IntensityImage() {
 	//TODO: Nothing
-	pixels = new Intensity();
+	pixels = new Intensity[1];
 }
 
 IntensityImageStudent::IntensityImageStudent(const IntensityImageStudent &other):IntensityImageStudent(other.getWidth(), other.getHeight()) {
